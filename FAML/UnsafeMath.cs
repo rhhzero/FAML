@@ -54,7 +54,7 @@ namespace FAML
     {
         
         /// <summary>
-        /// PRECISE: Returns a clamped value of the float x.
+        /// PRECISE: Returns the value of the float x clamped to zero.
         /// </summary>
         public static unsafe float Clamp0(float x)
         {
@@ -121,7 +121,7 @@ namespace FAML
         /// 4%, with the error increasing as the exponent increases.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe float PowFloat(double x, double y)
+        public static unsafe float PowFloat(float x, float y)
         {
             long temp = ((long)((int)(y * (((int)(*((long*)&x))) - 1072632447) + 1072632447))) << 32;
             return (float)(*((double *)&temp));
@@ -142,7 +142,7 @@ namespace FAML
         /// APPROXIMATION: Returns an approximation of ln(x).
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe double lnDouble(double x)
+        public static unsafe double LnDouble(double x)
         {
             return (((*((long*)&x)) >> 32) - 1072632447) / 1512775;
         }
@@ -151,7 +151,7 @@ namespace FAML
         /// APPROXIMATION: Returns an approximation of ln(x).
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe float lnFloat(double x)
+        public static unsafe float LnFloat(double x)
         {
             return (float)(((*((long*)&x)) >> 32) - 1072632447) / 1512775;
         }
@@ -160,7 +160,7 @@ namespace FAML
         /// APPROXIMATION: Returns an approximation of e^x. 
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe double expDouble(double x)
+        public static unsafe double ExpDouble(double x)
         {
             long temp = ((long)(1512775 * x + 1072632447)) << 32;
             return *((double*)&temp);
@@ -170,7 +170,7 @@ namespace FAML
         /// APPROXIMATION: Returns an approximation of e^x. 
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static unsafe float expFloat(double x)
+        public static unsafe float ExpFloat(double x)
         {
             long temp = ((long)(1512775 * x + 1072632447)) << 32;
             return (float)(*((double*)&temp));

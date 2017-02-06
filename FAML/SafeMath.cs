@@ -464,7 +464,7 @@ namespace FAML
 
         /// <summary>
         /// <para>APPROXIMATION: Returns the sine of the float x which is to be provided in radians. 
-        /// This method has an unlimited input range, but is slower than the limited range versions.</para>
+        /// This method doesn't have a heavily restricted input range, but is slower than the limited range versions.</para>
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float SinFloat(float x)
@@ -485,7 +485,7 @@ namespace FAML
 
         /// <summary>
         /// <para>APPROXIMATION: Returns the sine of the double x which is to be provided in radians. 
-        /// This method has an unlimited input range, but is slower than the limited range versions.</para>
+        /// This method doesn't have a heavily restricted input range, but is slower than the limited range versions.</para>
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double SinDouble(double x)
@@ -506,7 +506,7 @@ namespace FAML
 
         /// <summary>
         /// <para>APPROXIMATION: Returns the cosine of the float x which is to be provided in radians. 
-        /// This method has an unlimited input range, but is slower than the limited range versions.</para>
+        /// This method doesn't have a heavily restricted input range, but is slower than the limited range versions.</para>
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float CosFloat(float x)
@@ -531,7 +531,7 @@ namespace FAML
 
         /// <summary>
         /// <para>APPROXIMATION: Returns the cosine of the double x which is to be provided in radians. 
-        /// This method has an unlimited input range, but is slower than the limited range versions.</para>
+        /// This method doesn't have a heavily restricted input range, but is slower than the limited range versions.</para>
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double CosDouble(double x)
@@ -551,6 +551,20 @@ namespace FAML
             {
                 return x * (1.27323954 - 0.405284735 * x);
             }
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns the tangent of the float x which is to be provided in radians. 
+        /// This method has a very limited valid input range.</para>
+        /// <para>DOMAIN: (-PI / 2 to PI / 2)</para>
+        /// <para>ERROR: The average error is 1%, increasing dramatically upwards to 5% as the 
+        /// input approaches the domain limits.</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float TanFloat(float x)
+        {
+            float y = x * x;
+            return (1f + (0.33333333f * y) + (0.13333333f * y * y) + (0.05396825f * y * y * y)) * x;
         }
 
 
