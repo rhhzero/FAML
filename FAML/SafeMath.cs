@@ -49,6 +49,7 @@
 using System;
 using System.Runtime.CompilerServices;
 
+
 namespace FAML
 {
     public class SafeMath
@@ -233,6 +234,7 @@ namespace FAML
         /// <summary>
         /// PRECISE: Get the log base 2 of an integer using a lookup table.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int FastLog2Int(int x)
         {
             int r = 0;
@@ -266,9 +268,9 @@ namespace FAML
         }
 
         /// <summary>
-        /// PRECISE: Returns the absolute value of an integer x without using branching. If branching is faster 
-        /// on your target hardware, it is recommended to use System.Math.Abs() or a manually inlined 
-        /// conditional statement.
+        /// <para>PRECISE: Returns the absolute value of an integer x without using branching.</para>
+        /// <para>If branching is faster on your target hardware, it is recommended to use 
+        /// System.Math.Abs() or a manually inlined conditional statement.</para>
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int AbsInt(int x)
@@ -282,9 +284,277 @@ namespace FAML
         /// returns 0 if x is equal to y, and
         /// returns 1 if x is greater than y.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public int CompareInts(int x, int y)
         {
             return (((x - y) >> 0x1F) | (int)((uint)(-(x - y)) >> 0x1F));
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns whether a number is a power of two.</para>
+        /// <para>DOMAIN: [0 to uint.MaxValue]</para>
+        /// <para>ERROR: This method will erroneously return 0 when x = 0. You can 
+        /// write your own checks for these into the method, but for the sake of performance zero 
+        /// error checks have been implemented. This method is PRECISE otherwise.</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsPowerOf2(uint x)
+        {
+            return (x & (x - 1)) == 0;
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATE: Returns the next power of 2, or returns the argument x if x is a power of 2. 
+        /// For example - if x = 22, the return result will be 32.</para>
+        /// <para>DOMAIN: [0 to 1,073,741,824]</para>
+        /// <para>ERROR: This method will erroneously return 0 when x = 0, and 1 when x = 1. You can 
+        /// write your own checks for these into the method, but for the sake of performance zero 
+        /// error checks have been implemented. This method is PRECISE otherwise.</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int NextPowerOf2Int(int x)
+        {
+            x--;
+            x |= x >> 1;
+            x |= x >> 2;
+            x |= x >> 4;
+            x |= x >> 8;
+            x |= x >> 16;
+            x++;
+            return x;
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATE: Returns the next power of 2, or returns the argument x if x is a power of 2. 
+        /// For example - if x = 22, the return result will be 32.</para>
+        /// <para>DOMAIN: [0 to 4,611,686,018,427,387,904]</para>
+        /// <para>ERROR: This method will erroneously return 0 when x = 0, and 1 when x = 1. You can 
+        /// write your own checks for these into the method, but for the sake of performance zero 
+        /// error checks have been implemented. This method is PRECISE otherwise.</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static long NextPowerOf2Long(long x)
+        {
+            x--;
+            x |= x >> 1;
+            x |= x >> 2;
+            x |= x >> 4;
+            x |= x >> 8;
+            x |= x >> 16;
+            x++;
+            return x;
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATE: Returns the next power of 2, or returns the argument x if x is a power of 2. 
+        /// For example - if x = 22, the return result will be 32.</para>
+        /// <para>DOMAIN: [0 to 2,147,483,648]</para>
+        /// <para>ERROR: This method will erroneously return 0 when x = 0, and 1 when x = 1. You can 
+        /// write your own checks for these into the method, but for the sake of performance zero 
+        /// error checks have been implemented. This method is PRECISE otherwise.</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static uint NextPowerOf2Uint(uint x)
+        {
+            x--;
+            x |= x >> 1;
+            x |= x >> 2;
+            x |= x >> 4;
+            x |= x >> 8;
+            x |= x >> 16;
+            x++;
+            return x;
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATE: Returns the next power of 2, or returns the argument x if x is a power of 2. 
+        /// For example - if x = 22, the return result will be 32.</para>
+        /// <para>DOMAIN: [0 to 9,223,372,036,854,775,808]</para>
+        /// <para>ERROR: This method will erroneously return 0 when x = 0, and 1 when x = 1. You can 
+        /// write your own checks for these into the method, but for the sake of performance zero 
+        /// error checks have been implemented. This method is PRECISE otherwise.</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ulong NextPowerOf2Ulong(ulong x)
+        {
+            x--;
+            x |= x >> 1;
+            x |= x >> 2;
+            x |= x >> 4;
+            x |= x >> 8;
+            x |= x >> 16;
+            x++;
+            return x;
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns the sine of the float x which is to be provided in radians. 
+        /// This method has a very limited valid input range.</para>
+        /// <para>DOMAIN: [-PI to PI]</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float SinFloatFast(float x)
+        {
+            if (x < 0)
+            {
+                return x * (1.27323954f + 0.405284735f * x);
+            }
+            else
+            {
+                return x * (1.27323954f - 0.405284735f * x);
+            }
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns the sine of the double x which is to be provided in radians. 
+        /// This method has a very limited valid input range.</para>
+        /// <para>DOMAIN: [-PI to PI]</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double SinDoubleFast(double x)
+        {
+            if (x < 0)
+            {
+                return x * (1.27323954 + 0.405284735 * x);
+            }
+            else
+            {
+                return x * (1.27323954 - 0.405284735 * x);
+            }
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns the cosine of the float x which is to be provided in radians. 
+        /// This method has a very limited valid input range.</para>
+        /// <para>DOMAIN: [-4.71238898 to 1.57079632], or (-3PI/2 to PI/2)</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float CosFloatFast(float x)
+        {
+            // Cos(x) = Sin(x + PI / 2)
+            x += 1.57079632f;
+
+            if (x < 0)
+            {
+                return x * (1.27323954f + 0.405284735f * x);
+            }
+            else
+            {
+                return x * (1.27323954f - 0.405284735f * x);
+            }
+        }
+
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns the cosine of the double x which is to be provided in radians. 
+        /// This method has a very limited valid input range.</para>
+        /// <para>DOMAIN: [-4.71238898 to 1.57079632], or (-3PI/2 to PI/2)</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double CosDoubleFast(double x)
+        {
+            // Cos(x) = Sin(x + PI / 2)
+            x += 1.57079632679489661923;
+
+            if (x < 0)
+            {
+                return x * (1.27323954 + 0.405284735 * x);
+            }
+            else
+            {
+                return x * (1.27323954 - 0.405284735 * x);
+            }
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns the sine of the float x which is to be provided in radians. 
+        /// This method has an unlimited input range, but is slower than the limited range versions.</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float SinFloat(float x)
+        {
+            // Normalize
+            while (x < -3.14159265f) x += 6.28318531f;
+            while (x > 3.14159265f) x -= 6.28318531f;
+
+            if (x < 0)
+            {
+                return x * (1.27323954f + 0.405284735f * x);
+            }
+            else
+            {
+                return x * (1.27323954f - 0.405284735f * x);
+            }
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns the sine of the double x which is to be provided in radians. 
+        /// This method has an unlimited input range, but is slower than the limited range versions.</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double SinDouble(double x)
+        {
+            // Normalize
+            while (x < -3.14159265f) x += 6.28318531f;
+            while (x > 3.14159265f) x -= 6.28318531f;
+
+            if (x < 0)
+            {
+                return x * (1.27323954 + 0.405284735 * x);
+            }
+            else
+            {
+                return x * (1.27323954 - 0.405284735 * x);
+            }
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns the cosine of the float x which is to be provided in radians. 
+        /// This method has an unlimited input range, but is slower than the limited range versions.</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float CosFloat(float x)
+        {
+            // Cos(x) = Sin(x + PI / 2)
+            x += 1.57079632f;
+
+            // Normalize
+            while (x < -3.14159265f) x += 6.28318531f;
+            while (x > 3.14159265f) x -= 6.28318531f;
+
+            if (x < 0)
+            {
+                return x * (1.27323954f + 0.405284735f * x);
+            }
+            else
+            {
+                return x * (1.27323954f - 0.405284735f * x);
+            }
+        }
+
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns the cosine of the double x which is to be provided in radians. 
+        /// This method has an unlimited input range, but is slower than the limited range versions.</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double CosDouble(double x)
+        {
+            // Cos(x) = Sin(x + PI / 2)
+            x += 1.57079632679489661923;
+
+            // Normalize
+            while (x < -3.14159265f) x += 6.28318531f;
+            while (x > 3.14159265f) x -= 6.28318531f;
+
+            if (x < 0)
+            {
+                return x * (1.27323954 + 0.405284735 * x);
+            }
+            else
+            {
+                return x * (1.27323954 - 0.405284735 * x);
+            }
         }
 
     }

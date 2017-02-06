@@ -66,15 +66,24 @@ namespace FAML
         }
 
         /// <summary>
-        /// PRECISE: Returns the absolute value of a float x.
+        /// PRECISE: Returns the absolute value of the float x.
         /// </summary>
         public static unsafe float AbsFloat(float x)
         {
             int i = ((*(int*)&x) & 0x7fffffff);
             return (*(float*)&i);
         }
-        
-        
+
+        /// <summary>
+        /// APPROXIMATION: Returns the inverse value of the float x.
+        /// </summary>
+        public static unsafe float InverseFloat(float x)
+        {
+            uint* i = (uint*)&x;
+            *i = 0x7F000000 - *i;
+            return x;
+        }
+
         /// <summary>
         /// APPROXIMATION: The famous Quake 3 fast inverse square root approximation! Estimated 5% average error, increasing as 'x' 
         /// gets closer to zero.
