@@ -54,9 +54,6 @@ namespace FAML
 {
     public class SafeMath
     {
-        // Log LUT
-        private static readonly uint[] B = { 0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000 };
-        private static readonly int[] S = { 1, 2, 4, 8, 16 };
 
         /// <summary>
         /// PRECISE: Returns true if an integer x and an integer y have opposite signs, 
@@ -230,7 +227,6 @@ namespace FAML
             return (float)((BitConverter.DoubleToInt64Bits(x) >> 32) - 1072632447) / 1512775;
         }
 
-
         /// <summary>
         /// PRECISE: Get the log base 2 of an integer using a lookup table.
         /// </summary>
@@ -239,30 +235,30 @@ namespace FAML
         {
             int r = 0;
 
-            if ((x & B[4]) != 0)
+            if ((x & 0xFFFF0000) != 0)
             {
-                x >>= S[4];
-                r |= S[4];
+                x >>= 16;
+                r |= 16;
             }
-            if ((x & B[3]) != 0)
+            if ((x & 0xFF00) != 0)
             {
-                x >>= S[3];
-                r |= S[3];
+                x >>= 8;
+                r |= 8;
             }
-            if ((x & B[2]) != 0)
+            if ((x & 0xF0) != 0)
             {
-                x >>= S[2];
-                r |= S[2];
+                x >>= 4;
+                r |= 4;
             }
-            if ((x & B[1]) != 0)
+            if ((x & 0xC) != 0)
             {
-                x >>= S[1];
-                r |= S[1];
+                x >>= 2;
+                r |= 2;
             }
-            if ((x & B[0]) != 0)
+            if ((x & 0x2) != 0)
             {
-                x >>= S[0];
-                r |= S[0];
+                x >>= 1;
+                r |= 1;
             }
             return r;
         }
@@ -556,6 +552,8 @@ namespace FAML
                 return x * (1.27323954 - 0.405284735 * x);
             }
         }
+
+
 
     }
 }
