@@ -10,7 +10,8 @@ Credits:
 Several of these algorithms are C to C# ports from the 
 lovely website https://graphics.stanford.edu/~seander/bithacks.html and 
 others are from web resources such as the always dependable Stack Overflow 
-comments sections!
+comments sections! Other algorithms are derived from my own research, and 
+some basic math principles.
 
 =====================================
 About: 
@@ -41,3 +42,18 @@ library for certain programs, and it is my hope that you can find something
 useful to you here as well.  Once again, BENCHMARK FOR YOUR TARGET HARDWARE 
 FIRST! I take no responsibility for anything you do with the code provided 
 here.
+
+As a final note, I've omitted error checks for the sake of performance. If you know that your 
+input will fall within a given valid range (as is often the case), then this is for the better. 
+However, if you do not have that guarantee, it is quite trivial to add the error checking 
+yourself to any single one of these methods. 
+
+You'll also find that most of these options 
+have hints to the JITer for an inlining preference. Most of these methods should show some performance 
+benefit from inlining, but some of the larger methods may actually become slower when used often and 
+inlined since it can reduce locality of reference and cause cache misses to occur (which is a topic too 
+deep for a readme section!). If your benchmark reflects these possible pitfalls, try removing the inlining 
+hint attribute. You may also need to remove these attributes if you are working with a .NET framework version which 
+does not support "[MethodImpl(MethodImplOptions.AggressiveInlining)]".
+
+With those caveats in mind, please enjoy! I hope you find this library useful. I always welcome criticism and improvement of my works.
