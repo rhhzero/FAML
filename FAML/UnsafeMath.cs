@@ -50,7 +50,7 @@ using System.Runtime.CompilerServices;
 
 namespace FAML
 {
-    public class UnsafeMath
+    public static class UnsafeMath
     {
         
         /// <summary>

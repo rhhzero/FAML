@@ -52,7 +52,7 @@ using System.Runtime.CompilerServices;
 
 namespace FAML
 {
-    public class SafeMath
+    public static class SafeMath
     {
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace FAML
         /// APPROXIMATION: Returns an approximation of ln(x). 
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public double lnDouble(double x)
+        public static double lnDouble(double x)
         {
             return ((BitConverter.DoubleToInt64Bits(x) >> 32) - 1072632447) / 1512775;
         }
@@ -222,7 +222,7 @@ namespace FAML
         /// APPROXIMATION: Returns an approximation of ln(x). 
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public float lnFloat(double x)
+        public static float lnFloat(double x)
         {
             return (float)((BitConverter.DoubleToInt64Bits(x) >> 32) - 1072632447) / 1512775;
         }
@@ -281,7 +281,7 @@ namespace FAML
         /// returns 1 if x is greater than y.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public int CompareInts(int x, int y)
+        public static int CompareInts(int x, int y)
         {
             return (((x - y) >> 0x1F) | (int)((uint)(-(x - y)) >> 0x1F));
         }
