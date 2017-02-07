@@ -1,4 +1,4 @@
-﻿/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+﻿/* FAML by Roy Hwang * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  * 
  * Fast Approximate Math Library (FAML)
  * 
@@ -42,6 +42,10 @@
  * useful to you here as well.  Once again, BENCHMARK FOR YOUR TARGET HARDWARE 
  * FIRST! I take no responsibility for anything you do with the code provided 
  * here.
+ * 
+ * Thanks for using my library! I always welcome criticism, improvements, and suggestions!
+ * 
+ * - Roy Hwang
  * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
