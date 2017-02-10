@@ -3,6 +3,8 @@ Fast Approximate Math Library (FAML)
 
 By: Roy Hwang
 
+Target Framework: .NET 4.6
+
 =====================================
 Credits: 
 =====================================
