@@ -43,6 +43,11 @@
  * FIRST! I take no responsibility for anything you do with the code provided 
  * here.
  * 
+ * As a final note: USE THESE FUNCTIONS ONLY IF YOU KNOW that the input values will 
+ * fall within the "Recommended Domain" values, otherwise the result will be completely 
+ * unusable due to the nature of trying to approximate functions that contain vertical 
+ * asymptotes with polynomial functions.
+ * 
  * Thanks for using my library! I always welcome criticism, improvements, and suggestions!
  * 
  * - Roy Hwang
@@ -117,7 +122,7 @@ namespace FAML
         public static unsafe float SqrtFloat(float x)
         {
             uint i = ((*(uint*)&x) + 1065353216U) >> 1;
-            return *(float*)&i;
+            return *(float*)&i; 
         }
 
         /// <summary>
