@@ -400,7 +400,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns the sine of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the sine of the float x which is to be provided in radians. 
         /// This method has a very limited valid input range.</para>
         /// <para>RECOMMENDED DOMAIN: [-PI to PI]</para>
         /// </summary>
@@ -418,7 +418,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns the sine of the double x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the sine of the double x which is to be provided in radians. 
         /// This method has a very limited valid input range.</para>
         /// <para>RECOMMENDED DOMAIN: [-PI to PI]</para>
         /// </summary>
@@ -436,7 +436,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns the cosine of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the cosine of the float x which is to be provided in radians. 
         /// This method has a very limited valid input range.</para>
         /// <para>RECOMMENDED DOMAIN: [-4.71238898 to 1.57079632], or (-3PI/2 to PI/2)</para>
         /// </summary>
@@ -458,9 +458,10 @@ namespace FAML
 
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns the cosine of the double x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the cosine of the double x which is to be provided in radians. 
         /// This method has a very limited valid input range.</para>
         /// <para>RECOMMENDED DOMAIN: [-4.71238898 to 1.57079632], or (-3PI/2 to PI/2)</para>
+        /// <para>ERROR: Average error is approximately 3% - 5%.</para>
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double CosDouble(double x)
@@ -479,7 +480,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns the sine of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the sine of the float x which is to be provided in radians. 
         /// This method doesn't have a heavily restricted input range, but is slower than the limited range versions.</para>
         /// <para>RECOMMENDED DOMAIN: All</para>
         /// <para>ERROR: Average error of 2-5%, increases as x approaches -PI or PI</para>
@@ -500,9 +501,9 @@ namespace FAML
                 return x * (1.27323954f - 0.405284735f * x);
             }
         }
-        
+
         /// <summary>
-        /// <para>APPROXIMATION: Returns the sine of the double x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the sine of the double x which is to be provided in radians. 
         /// This method doesn't have a heavily restricted input range, but is slower than the limited range versions.</para>
         /// <para>RECOMMENDED DOMAIN: All</para>
         /// <para>ERROR: Average error of 2-5%, increases as x approaches -PI or PI</para>
@@ -526,7 +527,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns the cosine of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the cosine of the float x which is to be provided in radians. 
         /// This method doesn't have a heavily restricted input range, but is slower than the limited range versions.</para>
         /// <para>RECOMMENDED DOMAIN: All</para>
         /// <para>ERROR: Average error of 2-5%, increases as x approaches -PI or PI</para>
@@ -553,7 +554,7 @@ namespace FAML
 
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns the cosine of the double x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the cosine of the double x which is to be provided in radians. 
         /// This method doesn't have a heavily restricted input range, but is slower than the limited range versions.</para>
         /// <para>RECOMMENDED DOMAIN: All</para>
         /// <para>ERROR: Average error of 2-5%, increases as x approaches -PI or PI</para>
@@ -579,7 +580,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns the tangent of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the tangent of the float x which is to be provided in radians. 
         /// This method has a very limited valid input range.</para>
         /// <para>RECOMMENDED DOMAIN: [-1 to 1]</para>
         /// <para>ERROR: The average error is 3% - 5% within the recommended domain.</para>
@@ -592,7 +593,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns the tangent of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the tangent of the float x which is to be provided in radians. 
         /// This method has a very limited valid input range.</para>
         /// <para>RECOMMENDED DOMAIN: [-1 to 1]</para>
         /// <para>ERROR: The average error is 3% - 5% within the recommended domain.</para>
@@ -605,7 +606,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns a high precision approximation of the tangent of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians a high precision approximation of the tangent of the float x which is to be provided in radians. 
         /// This method has a very limited valid input range.</para>
         /// <para>RECOMMENDED DOMAIN: [-PI / 2 to PI / 2]</para>
         /// <para>ERROR: The average error is less than 1%.</para>
@@ -617,7 +618,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns a high precision approximation of the tangent of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians a high precision approximation of the tangent of the float x which is to be provided in radians. 
         /// This method has a very limited valid input range.</para>
         /// <para>RECOMMENDED DOMAIN: [-PI / 2 to PI / 2]</para>
         /// <para>ERROR: The average error is less than 1%.</para>
@@ -629,7 +630,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns a high precision approximation of the tangent of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians a high precision approximation of the tangent of the float x which is to be provided in radians. 
         /// This method normalizes the input for you, so it is slower than the non-normalized method.</para>
         /// <para>RECOMMENDED DOMAIN: All</para>
         /// <para>ERROR: The average error is less than 1%.</para>
@@ -645,7 +646,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns a high precision approximation of the tangent of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians a high precision approximation of the tangent of the float x which is to be provided in radians. 
         /// This method normalizes the input for you, so it is slower than the non-normalized method.</para>
         /// <para>RECOMMENDED DOMAIN: All</para>
         /// <para>ERROR: The average error is less than 1%.</para>
@@ -661,7 +662,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns the tangent of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the tangent of the float x which is to be provided in radians. 
         /// Use this if after normalization, your input value falls between -1 and 1.</para>
         /// <para>RECOMMENDED DOMAIN: [-1 to 1] after normalization.</para>
         /// <para>ERROR: The average error is 3% - 5% within the recommended domain.</para>
@@ -678,7 +679,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// <para>APPROXIMATION: Returns the tangent of the float x which is to be provided in radians. 
+        /// <para>APPROXIMATION: Returns in radians the tangent of the float x which is to be provided in radians. 
         /// Use this if after normalization, your input value falls between -1 and 1.</para>
         /// <para>RECOMMENDED DOMAIN: [-1 to 1] after normalization.</para>
         /// <para>ERROR: The average error is 3% - 5% within the recommended domain.</para>
@@ -692,6 +693,28 @@ namespace FAML
 
             double y = x * x;
             return (1f + (0.3333333333333333 * y) + (0.1333333333333333 * y * y) + (0.053968253968254 * y * y * y)) * x;
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns in radians the inverse cosine of the float x which is to be provided in radians. 
+        /// <para>RECOMMENDED DOMAIN: [-0.85 radians to 0.85 radians].</para>
+        /// <para>ERROR: The average error is 1% - 3% within the recommended domain.</para>
+        /// </summary>
+        public static float AcosFloat(float x)
+        {
+            float y = x * x;
+            return 1.57079633f - x * (1f + 0.16666667f * y + 0.075f * y * y);
+        }
+
+        /// <summary>
+        /// <para>APPROXIMATION: Returns in radians the inverse cosine of the double x which is to be provided in radians. 
+        /// <para>RECOMMENDED DOMAIN: [-0.85 radians to 0.85 radians] after normalization.</para>
+        /// <para>ERROR: The average error is 1% - 3% within the recommended domain.</para>
+        /// </summary>
+        public static double AcosDouble(double x)
+        {
+            double y = x * x;
+            return 1.5707963267948966 - x * (1.0 + 0.1666666666666667 * y + 0.075 * y * y);
         }
 
     }
