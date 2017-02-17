@@ -63,9 +63,9 @@ namespace FAML
     {
         
         /// <summary>
-        /// PRECISE: Returns the value of the float x clamped to zero.
+        /// PRECISE: Returns the value of the float x clamped to a minimum of zero.
         /// </summary>
-        public static unsafe float Clamp0(float x)
+        public static unsafe float ClampMin0(float x)
         {
             int casted = *(int*)&x;
             int s = casted >> 31;
