@@ -63,15 +63,43 @@ namespace FAML
     {
         
         /// <summary>
-        /// PRECISE: Returns the value of the float x clamped to a minimum of zero.
+        /// PRECISE: Returns the value of the float x clamped to a minimum value of 0. 
+        /// Note this method will only be faster on hardware with slow branching.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe float ClampMin0(float x)
         {
+            int intcast = *(int*)&x;
+            intcast &= ~(intcast >> 31);
+            return *(float*)&intcast;
+        }
+
+        /// <summary>
+        /// PRECISE: Returns the value of the float x clamped to a maximum value of 1. 
+        /// Note this method will only be faster on hardware with slow branching.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe float ClampMax1(float x)
+        {
+            x = 1f - x;
             int casted = *(int*)&x;
-            int s = casted >> 31;
-            s = ~s;
-            casted &= s;
-            return x = *(float*)&casted;
+            casted &= ~(casted >> 31);
+            return 1f - (*(float*)&casted);
+        }
+
+        /// <summary>
+        /// PRECISE: Returns the value of the float x clamped between 0 and 1. 
+        /// Note this method will only be faster on hardware with slow branching.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static unsafe float Clamp01(float x)
+        {
+            int intcast = *(int*)&x;
+            intcast &= ~(intcast >> 31);
+            x = 1f - *(float*)&intcast;
+            intcast = *(int*)&x;
+            intcast &= ~(intcast >> 31);
+            return 1f - (*(float*)&intcast);
         }
 
         /// <summary>
