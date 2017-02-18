@@ -122,7 +122,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// APPROXIMATION: The famous Quake 3 fast inverse square root approximation! Estimated 5% average error, increasing as 'x' 
+        /// APPROXIMATION: The famous Quake 3 fast inverse square root approximation! Estimated 5-10% average error, increasing as 'x' 
         /// gets closer to zero.
         /// </summary>
         public unsafe static float InvSqrtFloat(float x)
@@ -133,7 +133,7 @@ namespace FAML
         }
 
         /// <summary>
-        /// APPROXIMATION: The famous Quake 3 fast inverse square root approximation! Estimated 5% average error, increasing as 'x' 
+        /// APPROXIMATION: The famous Quake 3 fast inverse square root approximation! Estimated 5-10% average error, increasing as 'x' 
         /// gets closer to zero.
         /// </summary>
         public unsafe static double InvSqrtDouble(double x)
