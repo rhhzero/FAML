@@ -291,6 +291,38 @@ namespace FAML
         }
 
         /// <summary>
+        /// <para>PRECISE: Returns the largest value between 2 integers x and y.</para>
+        /// <para>RECOMMENDED DOMAIN: All</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int MaxInt(int x, int y)
+        {
+            int z = x - y;
+            return x - ((z >> 31) & z);
+        }
+
+        /// <summary>
+        /// <para>PRECISE: Returns the minimum value between 2 integers x and y.</para>
+        /// <para>RECOMMENDED DOMAIN: All</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int MinInt(int x, int y)
+        {
+            int z = y - x;
+            return x + ((z >> 31) & z);
+        }
+
+        /// <summary>
+        /// <para>PRECISE: if (x less than y) return a; else return b.</para>
+        /// <para>RECOMMENDED DOMAIN: All</para>
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int SelectInt(int x, int y, int a, int b)
+        {
+            return (((x - y) >> 31) & (a ^ b)) ^ b;
+        }
+
+        /// <summary>
         /// PRECISE: Returns -1 if x is less than y, 
         /// returns 0 if x is equal to y, and
         /// returns 1 if x is greater than y.
