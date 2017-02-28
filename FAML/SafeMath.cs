@@ -646,7 +646,8 @@ namespace FAML
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float TanFloatHP(float x)
         {
-            return (x - (0.09580102f * x * x * x)) / (1 - 0.42913502f * x * x + 0.00971659f * x * x * x * x);
+            float y = x * x;
+            return (x * (1f - 0.09580102f * y)) / (1f - 0.42913502f * y + 0.00971659f * y * y);
         }
 
         /// <summary>
@@ -658,7 +659,8 @@ namespace FAML
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double TanDoubleHP(double x)
         {
-            return (x - (0.09580102f * x * x * x)) / (1 - 0.42913502f * x * x + 0.00971659f * x * x * x * x);
+            double y = x * x;
+            return (x * (1.0 - 0.09580102 * y)) / (1.0 - 0.42913502 * y + 0.00971659 * y * y);
         }
 
         /// <summary>
@@ -674,7 +676,8 @@ namespace FAML
             while (x < -1.57079633f) x += 3.14159265f;
             while (x > 1.57079633f) x -= 3.14159265f;
 
-            return (x - (0.09580102f * x * x * x)) / (1 - 0.42913502f * x * x + 0.00971659f * x * x * x * x);
+            float y = x * x;
+            return (x * (1f - 0.09580102f * y)) / (1f - 0.42913502f * y + 0.00971659f * y * y);
         }
 
         /// <summary>
@@ -690,7 +693,8 @@ namespace FAML
             while (x < -1.57079633f) x += 3.14159265f;
             while (x > 1.57079633f) x -= 3.14159265f;
 
-            return (x - (0.09580102f * x * x * x)) / (1 - 0.42913502f * x * x + 0.00971659f * x * x * x * x);
+            double y = x * x;
+            return (x * (1.0 - 0.09580102 * y)) / (1.0 - 0.42913502 * y + 0.00971659 * y * y);
         }
 
         /// <summary>
