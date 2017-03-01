@@ -114,6 +114,7 @@ namespace FAML
         /// <summary>
         /// APPROXIMATION: Returns the inverse value of the float x.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static unsafe float InverseFloat(float x)
         {
             uint* i = (uint*)&x;
@@ -125,6 +126,7 @@ namespace FAML
         /// APPROXIMATION: The famous Quake 3 fast inverse square root approximation! Estimated 5-10% average error, increasing as 'x' 
         /// gets closer to zero.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public unsafe static float InvSqrtFloat(float x)
         {
             int i = 0x5f3759d5 - ((*(int*)&x) >> 1);
@@ -136,6 +138,7 @@ namespace FAML
         /// APPROXIMATION: The famous Quake 3 fast inverse square root approximation! Estimated 5-10% average error, increasing as 'x' 
         /// gets closer to zero.
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public unsafe static double InvSqrtDouble(double x)
         {
             long i = 0x5fe6ec85e7de30da - ((*(long*)&x) >> 1);

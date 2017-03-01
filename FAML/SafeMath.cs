@@ -736,6 +736,7 @@ namespace FAML
         /// <para>RECOMMENDED DOMAIN: [-0.85 radians to 0.85 radians].</para>
         /// <para>ERROR: The average error is 1% - 3% within the recommended domain.</para>
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float AcosFloat(float x)
         {
             float y = x * x;
@@ -747,6 +748,7 @@ namespace FAML
         /// <para>RECOMMENDED DOMAIN: [-0.85 radians to 0.85 radians] after normalization.</para>
         /// <para>ERROR: The average error is 1% - 3% within the recommended domain.</para>
         /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double AcosDouble(double x)
         {
             double y = x * x;
